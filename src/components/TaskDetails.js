@@ -4,9 +4,10 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, B
 const TaskDetails = ({ task, onClose, onCloseTask }) => {
   const [completionDate, setCompletionDate] = useState('');
   const [closeObservations, setCloseObservations] = useState('');
+  const [serviceTime, setServiceTime] = useState('');
 
   const handleCloseTask = () => {
-    onCloseTask(task.id, completionDate, closeObservations);
+    onCloseTask(task.id, completionDate, closeObservations, serviceTime);
   };
 
   return (
@@ -15,9 +16,7 @@ const TaskDetails = ({ task, onClose, onCloseTask }) => {
       <DialogContent>
         <DialogContentText>Nome do Cliente: {task.clientName}</DialogContentText>
         <DialogContentText>Nome do Parceiro: {task.partnerName}</DialogContentText>
-        <DialogContentText>Tempo de Serviço: {task.serviceTime}</DialogContentText>
-        <DialogContentText>Status: {task.status}</DialogContentText>
-        <DialogContentText>Projeto: {task.project}</DialogContentText>
+        <DialogContentText>Projeto: {task.projectName}</DialogContentText>
         <DialogContentText>Nome da Tarefa: {task.taskName}</DialogContentText>
         <DialogContentText>Data: {task.date}</DialogContentText>
         <DialogContentText>Observações: {task.observations}</DialogContentText>
@@ -26,6 +25,7 @@ const TaskDetails = ({ task, onClose, onCloseTask }) => {
           <>
             <TextField label="Data de Conclusão" type="date" fullWidth margin="normal" value={completionDate} onChange={(e) => setCompletionDate(e.target.value)} InputLabelProps={{ shrink: true }} />
             <TextField label="Observações de Fechamento" fullWidth margin="normal" value={closeObservations} onChange={(e) => setCloseObservations(e.target.value)} />
+            <TextField label="Tempo de Serviço" fullWidth margin="normal" value={serviceTime} onChange={(e) => setServiceTime(e.target.value)} />
           </>
         )}
       </DialogContent>
